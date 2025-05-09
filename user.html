@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Pengguna</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e3a5f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background-color: #2b4b7c;
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+    }
+    input, button {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #4b77be;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="loginCard">
+    <h2>Login Pengguna</h2>
+    <input type="email" id="loginEmail" placeholder="Email" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <br />
+    <button onclick="lupaPassword()">Lupa Password?</button>
+    <br />
+    <button onclick="kembali()">← Kembali</button>
+  </div>
+
+  <div class="card" id="lupaPasswordCard" style="display: none;">
+    <h2>Lupa Password</h2>
+    <input type="email" id="emailLupaPassword" placeholder="Masukkan email" />
+    <button onclick="kirimKode()">Kirim Kode Verifikasi</button>
+    <br />
+    <button onclick="kembaliLogin()">← Kembali ke Login</button>
+  </div>
+
+  <div class="card" id="verifikasiCard" style="display: none;">
+    <h2>Verifikasi Password</h2>
+    <input type="text" id="verifikasiKode" placeholder="Masukkan Kode Verifikasi" />
+    <input type="password" id="newPassword" placeholder="Password Baru" />
+    <input type="password" id="confirmPassword" placeholder="Konfirmasi Password Baru" />
+    <button onclick="resetPassword()">Reset Password</button>
+    <br />
+    <button onclick="kembaliLogin()">← Kembali ke Login</button>
+  </div>
+
+  <script>
+    // Fungsi Login
+    function login() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email && password) {
+        alert('Login berhasil!');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Email atau password tidak boleh kosong!');
+      }
+    }
+
+    // Fungsi untuk Lupa Password
+    function lupaPassword() {
+      document.getElementById('loginCard').style.display = 'none';
+      document.getElementById('lupaPasswordCard').style.display = 'block';
+    }
+
+    // Fungsi Kirim Kode Verifikasi ke Email
+    function kirimKode() {
+      const email = document.getElementById('emailLupaPassword').value;
+      
+      if (email) {
+        alert('Kode verifikasi telah dikirim ke email Anda!');
+        document.getElementById('lupaPasswordCard').style.display = 'none';
+        document.getElementById('verifikasiCard').style.display = 'block';
+      } else {
+        alert('Email tidak boleh kosong!');
+      }
+    }
+
+    // Fungsi Reset Password
+    function resetPassword() {
+      const kodeVerifikasi = document.getElementById('verifikasiKode').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (newPassword !== confirmPassword) {
+        alert('Password tidak cocok!');
+        return;
+      }
+
+      if (kodeVerifikasi) {
+        alert('Password berhasil direset!');
+        window.location.href = 'index.html';
+      } else {
+        alert('Kode verifikasi tidak boleh kosong!');
+      }
+    }
+
+    // Fungsi Kembali ke Halaman Login
+    function kembali() {
+      window.location.href = 'index.html';
+    }
+
+    // Fungsi Kembali ke Halaman Login setelah Lupa Password
+    function kembaliLogin() {
+      document.getElementById('lupaPasswordCard').style.display = 'none';
+      document.getElementById('verifikasiCard').style.display = 'none';
+      document.getElementById('loginCard').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Pengguna</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e3a5f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-box {
+      background-color: #2b4b7c;
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #27ae60;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .link {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #f1c40f;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login Pengguna</h2>
+    <input type="text" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <button>Login</button>
+
+    <div class="link">
+      <a href="index.html">← Kembali</a>
+      <a href="reset-password.html">Lupa password?</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Pengguna</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1e3a5f;
+      color: white;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .header {
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+    .main {
+      display: flex;
+      flex: 1;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #2b4b7c;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      position: relative;
+    }
+    .sidebar button {
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
+      margin: 10px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .sidebar button:hover {
+      text-decoration: underline;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .bottom-icons {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 300px;
+      height: 100%;
+      background-color: #38598b;
+      padding: 20px;
+      transition: right 0.3s ease;
+    }
+    .popup.active {
+      right: 0;
+    }
+    .back-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      color: #90ee90;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header" id="greeting">Halo, pengguna!</div>
+    <div class="main">
+      <div class="sidebar">
+        <button onclick="goBack()">← Kembali</button>
+        <button onclick="navigate('dashboard')">Dashboard</button>
+        <button onclick="navigate('sensor1')">Monitoring Sensor 1</button>
+        <button onclick="navigate('sensor2')">Monitoring Sensor 2</button>
+        <button onclick="navigate('sensor3')">Monitoring Sensor 3</button>
+        <div class="bottom-icons">
+          <button onclick="togglePopup('profilePopup')">👤 Profil</button>
+          <button onclick="togglePopup('settingsPopup')">⚙️ Pengaturan</button>
+        </div>
+      </div>
+      <div class="content" id="content-area">
+        <!-- Content loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <div class="popup" id="profilePopup">
+    <div class="back-btn" onclick="togglePopup('profilePopup')">✖</div>
+    <h3>Profil</h3>
+    <p>Nama: Pengguna</p>
+    <p>Email: pengguna@email.com</p>
+    <p>Password: ********</p>
+    <p>Tanggal Bergabung: 08 Mei 2025</p>
+  </div>
+
+  <div class="popup" id="settingsPopup">
+    <div class="back-btn" onclick="togglePopup('settingsPopup')">✖</div>
+    <h3>Pengaturan</h3>
+    <p>(Belum ada isi pengaturan)</p>
+  </div>
+
+  <script>
+    // Cek login
+    const user = localStorage.getItem('namaPengguna');
+    if (!user) {
+      window.location.href = 'index.html'; // Kalau belum login, kembali ke halaman awal
+    } else {
+      document.getElementById('greeting').innerText = `Halo, ${user}!`;
+    }
+
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+
+    function togglePopup(id) {
+      const popup = document.getElementById(id);
+      popup.classList.toggle('active');
+    }
+
+    function navigate(page) {
+      const area = document.getElementById('content-area');
+      area.innerHTML = `<h2>Halaman ${page}</h2><p>Konten kosong.</p>`;
+    }
+  </script>
+</body>
+</html>
